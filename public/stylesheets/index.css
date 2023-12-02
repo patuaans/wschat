@@ -1,4 +1,4 @@
-body{
+body {
   background-color: rgb(238, 238, 238);
 }
 
@@ -7,7 +7,6 @@ body{
   display: flex;
   height: calc(100vh - 70px);
 }
-
 
 .users-head {
   flex-direction: column;
@@ -76,7 +75,6 @@ body{
   background-color: rgb(116, 181, 255) !important;
   border-radius: 50px 10px 10px 50px;
   text-align: right;
-  /* word-wrap: break-word; */
 }
 
 .input-chat {
@@ -98,4 +96,8 @@ button {
   border-radius: 0 50px 50px 0;
   font-weight: bold;
   color: white;
+}
+
+.logout-button {
+  cursor: pointer;
 }
