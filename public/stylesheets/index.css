@@ -22,7 +22,7 @@ body {
 .users-list {
   overflow: auto;
   padding: 2%;
-  overflow: auto; /* Enable scrolling for the users list */
+  overflow: auto; 
 }
 
 .chat-window {
@@ -32,7 +32,7 @@ body {
   width: 100%;
   border-radius: 10px;
   background-color: rgb(39, 39, 39) !important;
-  overflow: auto; /* Enable scrolling if content exceeds the height */
+  overflow: auto; 
 }
 
 .chats {
