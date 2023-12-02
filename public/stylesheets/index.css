@@ -1,0 +1,101 @@
+body{
+  background-color: rgb(238, 238, 238);
+}
+
+.section-head {
+  padding: 0.5%;
+  display: flex;
+  height: calc(100vh - 70px);
+}
+
+
+.users-head {
+  flex-direction: column;
+}
+.users-window {
+  width: 25%;
+  color: white;
+  background-color: rgb(39, 39, 39) !important;
+  padding: 1.5% 2%;
+  border-radius: 10px;
+}
+
+.users-list {
+  overflow: auto;
+  padding: 2%;
+  overflow: auto; /* Enable scrolling for the users list */
+}
+
+.chat-window {
+  color: white;
+  padding: 1.5% 2%;
+  margin-left: 1%;
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgb(39, 39, 39) !important;
+  overflow: auto; /* Enable scrolling if content exceeds the height */
+}
+
+.chats {
+  height: calc(100% - 10%);
+  padding: 2%;
+  overflow: auto;
+}
+
+.chats::-webkit-scrollbar {
+  width: 10px;
+  background-color: #b2b2b2 !important;
+  border-radius: 10px 10px;
+}
+
+.chats::-webkit-scrollbar-thumb {
+  background-color: #656565 !important;
+  border-radius: 10px 10px;
+}
+
+.user-update {
+  text-align: center;
+  color: rgb(133, 133, 133) !important;
+  font-size: 15px;
+}
+
+.message {
+  background-color: white !important;
+  color: black;
+  padding: 1% 1.5%;
+  max-width: 40%;
+  margin-bottom: 1.5%;
+  border-radius: 10px 50px 50px 10px;
+  word-wrap: break-word;
+  overflow: auto;
+}
+
+.my-message {
+  margin-left: auto;
+  color: white;
+  background-color: rgb(116, 181, 255) !important;
+  border-radius: 50px 10px 10px 50px;
+  text-align: right;
+  /* word-wrap: break-word; */
+}
+
+.input-chat {
+  display: flex;
+}
+
+input {
+  background-color: white;
+  padding: 1% 2%;
+  outline: none;
+  border: none;
+  width: 100%;
+  border-radius: 50px 0 0 50px;
+}
+button {
+  padding: 1% 2%;
+  border: none;
+  background-color: rgb(116, 181, 255) !important;
+  border-radius: 0 50px 50px 0;
+  font-weight: bold;
+  color: white;
+}

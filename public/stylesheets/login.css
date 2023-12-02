@@ -1,0 +1,14 @@
+body {
+  background-color: #e0eeee;
+}
+form h1 {
+  color: #97ebad;
+  font-size: 50px;
+}
+.input-group-text,
+input {
+  width: 30%;
+  background-color: lightgray;
+  font-weight: bold;
+  border-right: 2px solid black;
+}

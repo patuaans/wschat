@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="./stylesheets/index.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-link"><b class="h4">Welcome, <%= username %></b></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-link" id="exit-chat"><b class="h5">Log Out</b></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section-head container-fluid">
+        <div class="users-window">
+            <div class="users-head d-flex align-items-center justify-content-between">
+                <h4>Group chat</h4>
+            </div>
+            <hr>
+
+            <div class="users-list">
+
+            </div>
+        </div>
+
+        <div class="chat-window">
+            <div class="chats">
+
+            </div>
+            <div class="input-chat">
+                <input type="text" id="message-input" placeholder="Type your message...">
+                <button id="send-message">Send</button>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="socket.io/socket.io.js"></script>
+    <script>
+        socket = io()
+        let uname
+        window.onload = () => {
+            socket.emit('new-user', '<%= username %>')
+        }
+
+        socket.on('update', (data) => {
+            renderMessage("update", data)
+        })
+        socket.on('chat', (data) => {
+            renderMessage("other", data)
+        })
+
+        socket.on('list-users', handleUserList)
+
+        function handleUserList(users) {
+            $('.users-list').empty()
+            users.forEach(u => {
+                if (u.id !== socket.id) {
+                    displayUser(u.username)
+                }
+            })
+        }
+
+        function displayUser(user) {
+            let userElement = $('<p>').text(user);
+            $('.users-list').append(userElement)
+
+            let usersListContainer = $('.users-list')[0];
+            usersListContainer.scrollTop = usersListContainer.scrollHeight - usersListContainer.clientHeight;
+        }
+
+        const app = document.querySelector(".section-head")
+        app.querySelector(".input-chat #send-message").addEventListener("click", sendMessage)
+
+        app.querySelector(".input-chat #message-input").addEventListener("keypress", function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        })
+
+        document.getElementById('exit-chat').addEventListener('click', function () {
+            window.location.href = '/logout';
+        })
+
+        function sendMessage() {
+            let messageInput = app.querySelector(".input-chat #message-input");
+            let message = messageInput.value;
+            if (message.length === 0) {
+                return
+            }
+            renderMessage("my", {
+                username: '<%= username %>',
+                message: message
+            });
+            socket.emit("chat", {
+                username: '<%= username %>',
+                message: message
+            });
+            messageInput.value = ""
+        }
+
+        function renderMessage(type, data) {
+            let { username, message } = data
+            uname = username
+            let messageContainer = app.querySelector(".chat-window .chats")
+            if (type === "my") {
+                let el = document.createElement("div");
+                el.setAttribute("class", "message my-message")
+                el.innerHTML = `
+                <h5>You</h5>
+                <p>${message}</p>
+            `
+                messageContainer.appendChild(el)
+            } else if (type === "other") {
+                let el = document.createElement("div");
+                el.setAttribute("class", "message other-message")
+                el.innerHTML = `
+                <h5>${username}</h5>
+                <p>${message}</p>
+            `
+                messageContainer.appendChild(el)
+            } else if (type === "update") {
+                let el = document.createElement("div");
+                el.setAttribute("class", "user-update")
+                el.innerText = message
+                messageContainer.appendChild(el)
+            }
+            else {
+                alert('Error in render')
+            }
+            messageContainer.scrollTop = messageContainer.scrollHeight - messageContainer.clientHeight
+        }
+    </script>
+</body>
+
+</html>

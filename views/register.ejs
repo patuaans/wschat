@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="stylesheets/register.css">
+    <title>Register form</title>
+</head>
+
+<body>
+    <section class="container gradient-custom vh-100">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <form id="registerForm" method="POST" action="/register">
+                                <div class="mb-md-2 mt-md-2 pb-1">
+                                    <img src="images/logo.png" class="logo" alt="logo" width="15%">
+                                    <br><br>
+                                    <h1 class="fw-bold mb-2 text-uppercase">Register</h1>
+                                    <p class="text-white-50 mb-5">Please enter your information!</p>
+
+                                    <div class="form-white input-group mb-3">
+                                        <span class="input-group-text">Username</span>
+                                        <input type="text" class="form-control form-control-lg" name="username" value="<%= formData.username%>" />
+                                    </div>
+
+                                    <div class="form-white input-group mb-3">
+                                        <span class="input-group-text">Password</span>
+                                        <input type="password" class="form-control form-control-lg" name="password" value="<%= formData.password%>"/>
+                                    </div>
+
+                                    <div class="form-white input-group mb-3">
+                                        <span class="input-group-text">Confirm Password</span>
+                                        <input type="password" class="form-control form-control-lg"
+                                            name="confirmPassword" />
+                                    </div>
+
+                                    <div class=" justify-content-between align-items-center">
+                                        <p class="text-end small mb-5 align-self-center">Have an account? - <a
+                                                href="/login" class="text-white-50 fw-bold">Login</a></p>
+                                    </div>
+                                    <% if (error.length> 0 ) { %>
+                                        <div class="alert alert-danger">
+                                            <%= error %>
+                                        </div>
+                                        <% } %>
+                                            <button class="btn btn-outline btn-lg px-5 btn-primary"
+                                                type="submit">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+body{
+    background-color: #E0EEEE;
+  }
+
+form h1{
+    color:#97ebad;
+    font-size: 50px;
+  }
+
+.input-group-text, input {
+    width: 40%;
+    min-width: 150px;
+    background-color: lightgray;
+    font-weight:bold;
+    border-right: 2px solid black;
+  }
